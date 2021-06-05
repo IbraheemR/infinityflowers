@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "iflowers",
+  "version": "${version}",
+
+  "name": "Infinity Flowers",
+  "description": "Cool pog",
+  "authors": [
+    "Ibraheem Rodrigues"
+  ],
+  "contact": {
+
+  },
+
+  "license": "TODO",
+  "icon": "assets/iflowers/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.ibraheemrodrigues.iflowers.IFlowersMod"
+    ]
+  },
+  "mixins": [
+    "iflowers.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
