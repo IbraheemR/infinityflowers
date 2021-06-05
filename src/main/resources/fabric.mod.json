@@ -19,6 +19,8 @@
   "entrypoints": {
     "main": [
       "com.ibraheemrodrigues.iflowers.IFlowersMod"
+    ], "client": [
+      "com.ibraheemrodrigues.iflowers.IFlowersClient"
     ]
   },
   "mixins": [

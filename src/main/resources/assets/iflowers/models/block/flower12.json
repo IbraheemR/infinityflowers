@@ -1,1 +1,4 @@
-{"parent": "block/cross", "textures": {"cross": "iflowers:block/flower12"}}
+{
+  "parent": "block/cross",
+  "textures": { "cross": "iflowers:block/flower12" }
+}

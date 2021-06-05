@@ -4,7 +4,7 @@
     {
       "rolls": 1,
       "entries": [
-        { "type": "minecraft:item", "name": "iflowersexample_block" }
+        { "type": "minecraft:item", "name": "iflowers:flower00" }
       ],
       "conditions": [{ "condition": "minecraft:survives_explosion" }]
     }
