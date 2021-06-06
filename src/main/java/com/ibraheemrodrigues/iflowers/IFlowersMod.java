@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class IFlowersMod implements ModInitializer {
 	public static final ItemGroup FLOWER_GROUP = FabricItemGroupBuilder.build(
-			new Identifier("iflower", "flowers"),
+			new Identifier("iflowers", "flowers"),
 			() -> new ItemStack(Flowers100.Flower00)
 	);
 

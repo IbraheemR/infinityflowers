@@ -1,5 +1,19 @@
 {
   "variants": {
-    "": { "model": "iflowers:block/flower39" }
+    "facing=east": {
+      "model": "iflowers:block/flower39"
+    },
+    "facing=north": {
+      "model": "iflowers:block/flower39",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "iflowers:block/flower39",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "iflowers:block/flower39",
+      "y": 180
+    }
   }
 }
