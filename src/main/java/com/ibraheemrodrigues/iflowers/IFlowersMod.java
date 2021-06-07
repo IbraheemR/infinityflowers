@@ -16,4 +16,9 @@ public class IFlowersMod implements ModInitializer {
 	public void onInitialize() {
 		Flowers100.init();
 	}
+
+	public static Identifier getId(String name) {
+		return new Identifier("iflowers", name);
+	}
+
 }
