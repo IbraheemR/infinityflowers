@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -20,14 +21,19 @@ import static com.ibraheemrodrigues.iflowers.Flowers100.*;
 import static com.ibraheemrodrigues.iflowers.Flowers100.Flower13;
 import static com.ibraheemrodrigues.iflowers.IFlowersMod.getId;
 
-public class Flowers100Features {
+public class Flowers100Features extends ConfiguredFeatures {
+    // HACK: subclassing to get access to ConfiguredFeatures.Decorator. is this bad?
 
     private static RandomPatchFeatureConfig.Builder getRPFCBuilder(Block[] states) {
-        WeightedBlockStateProvider blockStateProvider = new WeightedBlockStateProvider();
+
+        DataPool.Builder<BlockState> statePool = new DataPool.Builder<>();
+
         for (Block state:
-             states) {
-            blockStateProvider.addState(state.getDefaultState(), 1);
+                states) {
+            statePool.add(state.getDefaultState(), 1);
         }
+
+        WeightedBlockStateProvider blockStateProvider = new WeightedBlockStateProvider(statePool.build());
         return new RandomPatchFeatureConfig.Builder(
                 blockStateProvider,
                 SimpleBlockPlacer.INSTANCE
@@ -35,7 +41,7 @@ public class Flowers100Features {
     }
 
     private static ConfiguredFeature<?, ?> buildSimpleFlowerPatch(boolean useFlower, Block... states) {
-        Feature f = useFlower ? Feature.FLOWER : Feature.RANDOM_PATCH ;
+        Feature<RandomPatchFeatureConfig> f = useFlower ? Feature.FLOWER : Feature.RANDOM_PATCH ;
         return f.configure(
                 getRPFCBuilder(states).build()
         )
@@ -44,7 +50,7 @@ public class Flowers100Features {
     }
 
     private static void registerSimpleFlowerPatch(Predicate<BiomeSelectionContext> selector, ConfiguredFeature<?, ?> configuredFeature, String id) {
-        RegistryKey<ConfiguredFeature<?, ?>> flowerFeatureKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, getId(id));
+        RegistryKey<ConfiguredFeature<?, ?>> flowerFeatureKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, getId(id));
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, flowerFeatureKey.getValue(), configuredFeature);
 
         BiomeModifications.addFeature(selector, GenerationStep.Feature.VEGETAL_DECORATION, flowerFeatureKey);
